@@ -1,0 +1,7 @@
+(compile -s -d0 -O2 syslog.scm -j syslog)
+(compile -s -d0 -O2 syslog.import.scm)
+
+(install-extension
+  'syslog
+  '("syslog.import.so" "syslog.so")
+  '((version 0.1)))

@@ -1,0 +1,7 @@
+((egg "syslog.egg")
+ (author "David Krentzlin")
+ (synopsis "Interface to the syslog-functions")
+ (category os)
+ (license "MIT") 
+ (doc-from-wiki)
+ (files "syslog.scm" "syslog.release-info" "syslog.meta" "syslog.setup"))
