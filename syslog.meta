@@ -4,4 +4,4 @@
  (category os)
  (license "MIT") 
  (doc-from-wiki)
- (files "syslog.scm" "syslog.release-info" "syslog.meta" "syslog.setup"))
+ (files "syslog.meta" "syslog.release-info" "syslog.scm" "syslog.setup"))
