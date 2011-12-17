@@ -7,9 +7,9 @@
 ;; Created: Do Sep  3 20:40:28 2009 (CEST)
 ;; Version: $Id$
 ;; Version: 
-;; Last-Updated: Sa Dez 17 09:06:02 2011 (CET)
+;; Last-Updated: Sa Dez 17 09:18:47 2011 (CET)
 ;;           By: David Krentzlin
-;;     Update #: 142
+;;     Update #: 145
 ;; URL: 
 ;; Keywords: 
 ;; Compatibility: 
@@ -166,8 +166,14 @@ EOC
   ;not portable
   ;(define-log-constant facility/console   "LOG_CONSOLE")
 
+  ;; we strdup the identity here so that the gc
+  ;; can not delete/mode our reference to the identy
   (define openlog
-    (foreign-lambda void "openlog" c-string int int))
+    (foreign-lambda* void ((c-string identity) (int options) (int facility))
+      "static char *ident = NULL;"
+      "if(ident) free(ident);"
+      "ident = strdup(identity);"
+      "openlog(ident,options,facility);"))
 
   (define closelog
     (foreign-lambda void "closelog"))
