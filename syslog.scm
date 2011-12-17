@@ -7,9 +7,9 @@
 ;; Created: Do Sep  3 20:40:28 2009 (CEST)
 ;; Version: $Id$
 ;; Version: 
-;; Last-Updated: Sa Sep  5 23:13:45 2009 (CEST)
-;;           By: David Krentzlin <david@lisp-unleashed.de>
-;;     Update #: 140
+;; Last-Updated: Sa Dez 17 09:06:02 2011 (CET)
+;;           By: David Krentzlin
+;;     Update #: 142
 ;; URL: 
 ;; Keywords: 
 ;; Compatibility: 
@@ -28,7 +28,7 @@
 ;; RCS $Log$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
-;; Copyright (c) <2009> David Krentzlin <david@lisp-unleashed.de>
+;; Copyright (c) <2011> David Krentzlin <david@lisp-unleashed.de>
 ;; 
 ;;   Permission is hereby granted, free of charge, to any person
 ;;   obtaining a copy of this software and associated documentation
@@ -173,7 +173,8 @@ EOC
     (foreign-lambda void "closelog"))
   
   (define (syslog priority fmt . args)
-    ((foreign-lambda* void ((int prio) (c-string msg)) "syslog(prio,\"%s\",msg);") priority (apply sprintf fmt args)))
+    (let ((message (if (null? args) fmt (apply sprintf fmt args))))
+      ((foreign-lambda* void ((int prio) (c-string msg)) "syslog(prio,\"%s\",msg);") priority message)))
 
   (define setlogmask
     (foreign-lambda int "setlogmask" int))
