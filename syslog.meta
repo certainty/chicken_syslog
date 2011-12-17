@@ -4,4 +4,4 @@
  (category os)
  (license "MIT") 
  (doc-from-wiki)
- (files "syslog.meta" "syslog.release-info" "syslog.scm" "syslog.setup"))
+ (files ".hgignore" "examples/example.scm" "syslog.meta" "syslog.release-info" "syslog.scm" "syslog.setup"))
